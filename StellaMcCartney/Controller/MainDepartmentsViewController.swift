@@ -112,6 +112,7 @@ extension MainDepartmentsViewController: UICollectionViewDelegateFlowLayout {
         cell.item = department
         return cell
     }
+    
 }
 
 
