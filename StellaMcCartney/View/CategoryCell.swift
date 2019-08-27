@@ -8,43 +8,43 @@
 
 import UIKit
 
-class MainDepartmentCell: BaseCell {
+class CategoryCell: BaseCell {
     
-    let departmentImageView: CustomImageView = {
+    let categoryImageView: CustomImageView = {
         let imageView = CustomImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
     
-    let departmentName: UILabel = {
+    let categoryName: UILabel = {
         let label = UILabel()
         label.textColor = .black
         return label
     }()
     
-    var item: Department? {
+    var category: Category? {
         didSet {
-            departmentName.text = item?.name
+            categoryName.text = category?.name
             
-            setDepartmentImage()
+            setCategoryImage()
         }
     }
     
-    func setDepartmentImage() {
-        if let departmentImageUrl = item?.imageUrl {
+    func setCategoryImage() {
+        if let categoryImageUrl = category?.imageUrl {
             
-            departmentImageView.loadImageUsingUrlString(departmentImageUrl)
+            categoryImageView.loadImageUsingUrlString(categoryImageUrl)
         }
     }
     
     override func setupViews() {
         
-        addSubview(departmentImageView)
-        departmentImageView.fillSuperview()
+        addSubview(categoryImageView)
+        categoryImageView.fillSuperview()
         
-        addSubview(departmentName)
-        departmentName.fillSuperview()
+        addSubview(categoryName)
+        categoryName.fillSuperview()
     }
     
 }

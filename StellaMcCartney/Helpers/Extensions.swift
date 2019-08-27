@@ -1,8 +1,8 @@
 //
 //  RGB to UIColor.swift
-//  YoutubeApp
+//  StellaMcCartney
 //
-//  Created by Vinicius Leal on 13/03/19.
+//  Created by Vinicius Leal on 27/08/19.
 //  Copyright © 2019 Vinicius Leal. All rights reserved.
 //
 

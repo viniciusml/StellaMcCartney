@@ -1,8 +1,8 @@
 //
 //  BaseCell.swift
-//  CollectionTest
+//  StellaMcCartney
 //
-//  Created by Vinicius Leal on 15/05/19.
+//  Created by Vinicius Leal on 27/08/19.
 //  Copyright © 2019 Vinicius Leal. All rights reserved.
 //
 
