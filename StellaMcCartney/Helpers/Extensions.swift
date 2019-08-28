@@ -129,15 +129,14 @@ struct AnchoredConstraints {
 }
 
 extension UILabel {
-    
-    convenience init(text: String, font: UIFont, numberOfLines: Int = 1) {
+    convenience init(font: UIFont, numberOfLines: Int = 1) {
         self.init(frame: .zero)
-        self.text = text
         self.font = font
         self.numberOfLines = numberOfLines
-        
+        self.textAlignment = .center
     }
 }
+
 extension UIImageView {
     
     convenience init(image: UIImage, cornerRadius: CGFloat) {
@@ -147,6 +146,15 @@ extension UIImageView {
         self.contentMode = .scaleAspectFill
     }
     
+}
+
+extension UIView {
+    convenience init(color: UIColor, borderColor: CGColor, borderWidth: CGFloat) {
+        self.init(frame: .zero)
+        self.layer.borderColor = borderColor
+        self.layer.borderWidth = borderWidth
+        self.backgroundColor = color
+    }
 }
 
 extension UIButton {

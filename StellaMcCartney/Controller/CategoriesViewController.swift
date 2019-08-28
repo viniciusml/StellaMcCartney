@@ -17,7 +17,7 @@ class CategoriesViewController: UICollectionViewController {
     init() {
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
         
-        collectionView.backgroundColor = .lightGray
+        collectionView.backgroundColor = .white
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -27,14 +27,17 @@ class CategoriesViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "CATEGORIES"
         collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: categoryCellId)
+        
+        collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         
         Categories = [Category(name: "Ready to wear", imageUrl: ImageUrl.readyToWear, jsonUrl: "Ready_To_Wear"),
                       Category(name: "Accessories", imageUrl: ImageUrl.accessories, jsonUrl: "Accessories_All"),
                       Category(name: "Beauty", imageUrl: ImageUrl.beauty, jsonUrl: "Beauty"),
                       Category(name: "Lingerie", imageUrl: ImageUrl.lingerie, jsonUrl: "Lingerie")]
         
-        self.title = "Categories"
     }
 }
 
@@ -45,11 +48,11 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        return 17
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (view.frame.width - 40), height: (view.frame.height / 4))
+        return CGSize(width: view.frame.width, height: 400)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -67,7 +70,7 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout {
         let category = Categories[indexPath.item]
         let productController = ProductListViewController(url: category.jsonUrl)
         
-        productController.title = category.name
+        productController.title = category.name.uppercased()
         navigationController?.pushViewController(productController, animated: true)
     }
 }

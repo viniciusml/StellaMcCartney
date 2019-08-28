@@ -24,6 +24,7 @@ class DetailViewController: UIViewController {
     }()
     
     var defaultCode10Received: String?
+    
     var code8Received: String?
     
     var descriptions = [Description]()
@@ -88,7 +89,6 @@ class DetailViewController: UIViewController {
                 self.productTitle.text = self.populateLabel(for: .title)
                 self.microCategory.text = self.populateLabel(for: .MicroCategory)
                 
-                print(productDetail.item.isNewArrival)
             }
         }
     }

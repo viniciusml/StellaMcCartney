@@ -14,68 +14,56 @@ class ProductCell: BaseCell {
     lazy var productImageView: CustomImageView = {
         let imageView = CustomImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .red
         imageView.clipsToBounds = true
         imageView.constrainHeight(constant: 230)
+        imageView.backgroundColor = .red
         return imageView
     }()
     
     lazy var productName: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.numberOfLines = 1
-        label.constrainHeight(constant: 37)
+        label.numberOfLines = 0
         label.textAlignment = .center
+        label.lineBreakMode = .byClipping
         return label
     }()
     
-    lazy var fullPriceLabel: UILabel = {
-        let label = UILabel()
-        label.constrainHeight(constant: 28)
-        label.textAlignment = .center
-        return label
-    }()
+    let fullPriceLabel = UILabel(font: UIFont(name: Font.medium, size: 18)!)
     
-    lazy var discountPriceLabel: UILabel = {
-        let label = UILabel()
-        label.constrainHeight(constant: 18)
-        label.textAlignment = .center
-        return label
-    }()
-    
-    var product: Item? {
+    let discountPriceLabel = UILabel(font: UIFont(name: Font.light, size: 16)!)
+        
+    var productViewModel: ProductViewModel! {
         didSet {
-            guard let product = product else { return }
-            productName.text = product.modelNames
-            fullPriceLabel.text = String(describing: product.fullPrice)
-            discountPriceLabel.text = String(describing: product.discountedPrice)
-            
-            setProductImage(defaultCode10: product.defaultCode10)
+            productName.text = productViewModel.productTitle
+            fullPriceLabel.text = productViewModel.fullPrice
+            discountPriceLabel.text = productViewModel.discountPrice
+            productImageView.loadImageUsingUrlString(prepareImageUrl(productViewModel.defaultCode10))
         }
     }
     
-    func setProductImage(defaultCode10: String) {
-
-        let firstTwoNumbers = defaultCode10.prefix(2)
-        let url = "https://www.stellamccartney.com/\(firstTwoNumbers)/\(defaultCode10)_11_c.jpg"
-        
-        productImageView.loadImageUsingUrlString(url)
-    }
-    
     override func setupViews() {
-        backgroundColor = .white
         
         addSubview(productImageView)
-        productImageView.anchor(top: self.topAnchor, leading: self.leadingAnchor, bottom: nil, trailing: self.trailingAnchor, padding: UIEdgeInsets(top: 26, left: 0, bottom: 0, right: 0))
-        
-        addSubview(productName)
-        productName.anchor(top: productImageView.bottomAnchor, leading: self.leadingAnchor, bottom: nil, trailing: self.trailingAnchor)
-        
-        addSubview(fullPriceLabel)
-        fullPriceLabel.anchor(top: productName.bottomAnchor, leading: self.leadingAnchor, bottom: nil, trailing: self.trailingAnchor)
+        productImageView.anchor(top: self.topAnchor, leading: self.leadingAnchor, bottom: nil, trailing: self.trailingAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         
         addSubview(discountPriceLabel)
-        discountPriceLabel.anchor(top: fullPriceLabel.bottomAnchor, leading: self.leadingAnchor, bottom: nil, trailing: self.trailingAnchor)
+        discountPriceLabel.constrainHeight(constant: 20)
+        discountPriceLabel.anchor(top: nil, leading: self.leadingAnchor, bottom: self.bottomAnchor, trailing: self.trailingAnchor)
+        
+        addSubview(fullPriceLabel)
+        fullPriceLabel.constrainHeight(constant: 28)
+        fullPriceLabel.anchor(top: nil, leading: self.leadingAnchor, bottom: discountPriceLabel.topAnchor, trailing: self.trailingAnchor)
+        
+        addSubview(productName)
+        productName.anchor(top: productImageView.bottomAnchor, leading: self.leadingAnchor, bottom: fullPriceLabel.topAnchor, trailing: self.trailingAnchor)
     }
     
+    func prepareImageUrl(_ defaultCode10: String) -> String {
+        
+        let folderIdentifier = defaultCode10.prefix(2)
+        let url = "https://www.stellamccartney.com/\(folderIdentifier)/\(defaultCode10)_11_c.jpg"
+        
+        return url
+    }
 }

@@ -12,8 +12,7 @@ class ProductListViewController: UICollectionViewController {
 
     let productCellId = "cellId"
     
-    var product: Product?
-    var items = [Item]()
+    var productViewModels = [ProductViewModel]()
     
     var jsonUrlReceived: String?
     
@@ -22,13 +21,10 @@ class ProductListViewController: UICollectionViewController {
         Service.shared.fetchMainBeauty(urlString: jsonUrl) { (res) in
             switch res {
             case .success(let product):
-                self.product = product
+                self.productViewModels = product.resultsLite.items.map({ return ProductViewModel(product: $0)}) 
             case .failure(let err):
                 print("Failure to fetch product:", err)
             }
-            
-            guard let product = self.product else {return}
-            self.items = product.resultsLite.items
             
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -41,7 +37,7 @@ class ProductListViewController: UICollectionViewController {
         self.jsonUrlReceived = url
         fetchProductsInformation(jsonUrl: self.jsonUrlReceived ?? "")
         
-        collectionView.backgroundColor = .lightGray
+        collectionView.backgroundColor = .white
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,7 +54,7 @@ class ProductListViewController: UICollectionViewController {
 extension ProductListViewController: UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count
+        return productViewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -66,29 +62,30 @@ extension ProductListViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (view.frame.width - 34) / 2, height: 375)
+        return CGSize(width: (view.frame.width - 40) / 2, height: 375)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 32, left: 0, bottom: 8, right: 0)
+        return UIEdgeInsets(top: 32, left: 10, bottom: 8, right: 10)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: productCellId, for: indexPath) as! ProductCell
         
-        let item = items[indexPath.item]
-        cell.product = item
+        let productViewModel = productViewModels[indexPath.item]
+        cell.productViewModel = productViewModel
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         guard let cell = collectionView.cellForItem(at: indexPath) as? ProductCell else { return }
-        guard let product = cell.product else { return }
-        let detailController = DetailViewController(url: product.defaultCode10, productCode8: product.code8)
+        guard let productViewModel = cell.productViewModel else { return }
+        let detailController = DetailViewController(url: productViewModel.defaultCode10, productCode8: productViewModel.code8)
 
-        detailController.title = product.modelNames
+        print(productViewModel.defaultCode10)
+        detailController.title = productViewModel.productTitle
         navigationController?.pushViewController(detailController, animated: true)
     }
     

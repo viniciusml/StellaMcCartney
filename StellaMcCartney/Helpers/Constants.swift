@@ -14,7 +14,20 @@ struct ImageUrl {
     
     static let accessories = "https://www.stellamccartney.com/46/46642086NU_11_c.jpg"
     
-    static let beauty = "https://www.stellamccartney.com/51/51125261DF_11_c.jpg"
+    static let beauty = "https://www.stellamccartney.com/51/51125181GH_11_c.jpg"
     
-    static let lingerie = "https://www.stellamccartney.com/48/48199194BH_11_c.jpg"
+    static let lingerie = "https://www.stellamccartney.com/48/48218688SV_11_c.jpg"
+}
+
+struct Font {
+    
+    static let light = "PingFangHK-Light"
+    
+    static let medium = "PingFangHK-Medium"
+    
+    static let regular = "PingFangHK-Regular"
+    
+    static let semibold = "PingFangHK-Semibold"
+    
+    static let thin = "PingFangHK-Thin"
 }

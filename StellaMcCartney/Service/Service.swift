@@ -24,8 +24,8 @@ class Service {
             }
             
             do {
-                let product = try JSONDecoder().decode(Product.self, from: data!)
-                completion(.success(product))
+                let products = try JSONDecoder().decode(Product.self, from: data!)
+                completion(.success(products))
             } catch let jsonError {
                 completion(.failure(jsonError))
             }
