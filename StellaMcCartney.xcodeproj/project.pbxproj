@@ -22,6 +22,7 @@
 		8F074A8B23156E9E00E977DF /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F074A8A23156E9E00E977DF /* ProductCell.swift */; };
 		8F074A8D23157B6600E977DF /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F074A8C23157B6600E977DF /* Category.swift */; };
 		8F074A8F2315843400E977DF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F074A8E2315843400E977DF /* DetailViewController.swift */; };
+		8F074A912316598B00E977DF /* ProductDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F074A902316598B00E977DF /* ProductDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		8F074A8A23156E9E00E977DF /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		8F074A8C23157B6600E977DF /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		8F074A8E2315843400E977DF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		8F074A902316598B00E977DF /* ProductDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			children = (
 				8F074A8623155BE100E977DF /* Product.swift */,
 				8F074A8C23157B6600E977DF /* Category.swift */,
+				8F074A902316598B00E977DF /* ProductDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				8F074A7623150B6F00E977DF /* BaseCell.swift in Sources */,
 				8F074A6C231431C400E977DF /* Service.swift in Sources */,
 				8F074A7923150BDA00E977DF /* Extensions.swift in Sources */,
+				8F074A912316598B00E977DF /* ProductDetail.swift in Sources */,
 				8F074A7B23151EDC00E977DF /* Constants.swift in Sources */,
 				8F074A85231542C500E977DF /* ProductListViewController.swift in Sources */,
 				8F074A8B23156E9E00E977DF /* ProductCell.swift in Sources */,

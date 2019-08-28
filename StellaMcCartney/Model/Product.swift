@@ -47,6 +47,7 @@ struct Item: Codable {
         case fullPrice = "FullPrice"
         case discountedPrice = "DiscountedPrice"
         case modelNames = "ModelNames"
+        case code8 = "Code8"
     }
     
     let microCategory, defaultCode10: String
@@ -54,6 +55,7 @@ struct Item: Codable {
     let discountedPrice: Int
     let modelNames: String?
     let brandName: BrandName
+    let code8: String
 }
 
 enum BrandName: String, Codable {

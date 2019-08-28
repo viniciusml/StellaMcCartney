@@ -32,4 +32,25 @@ class Service {
             
             }.resume()
     }
+    
+    func fetchProductDetail(code8: String, completion: @escaping (Result<ProductDetail, Error>) -> ()) {
+        
+        guard let url = URL(string: "http://api.yoox.biz/Item.API/1.0/SMC_IT/item/\(code8).json") else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, resp, err) in
+            
+            if let err = err {
+                completion(.failure(err))
+                return
+            }
+            
+            do {
+                let productDetail = try JSONDecoder().decode(ProductDetail.self, from: data!)
+                completion(.success(productDetail))
+            } catch let jsonError {
+                completion(.failure(jsonError))
+            }
+            
+            }.resume()
+    }
 }
