@@ -15,9 +15,15 @@ struct ProductViewModel {
     let discountPrice: String
     let defaultCode10: String
     let code8: String
+    let microCategory: String
     
     init(product: Item) {
-        self.productTitle = product.modelNames?.replacingOccurrences(of: "<br>", with: "\n") ?? ""
+        
+        if product.modelNames == nil {
+            self.productTitle = product.microCategory
+        } else {
+            self.productTitle = product.modelNames?.replacingOccurrences(of: "<br>", with: "\n") ?? ""
+        }
         
         self.defaultCode10 = product.defaultCode10
         self.code8 = product.code8
@@ -27,7 +33,9 @@ struct ProductViewModel {
             self.discountPrice = "Was €\(product.fullPrice)"
         } else {
             self.fullPrice = "€\(product.fullPrice)"
-            self.discountPrice = "Was €300"
+            self.discountPrice = ""
         }
+        
+        self.microCategory = product.microCategory
     }
 }

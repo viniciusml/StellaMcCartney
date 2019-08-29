@@ -9,6 +9,15 @@
 import Foundation
 import UIKit
 
+extension UIColor {
+    static let gainsboroGray = UIColor(red:0.83, green:0.83, blue:0.83, alpha:1.0)
+}
+
+extension Notification.Name {
+    static let saveIndex = Notification.Name("saveIndex")
+    static let saveImagesUrlAvailable = Notification.Name("imagesUrlAvailable")
+}
+
 extension UIImageView {
     func load(url: URL) {
         DispatchQueue.global().async { [weak self] in
@@ -165,43 +174,38 @@ extension UIButton {
     
 }
 
-let imageCache = NSCache<AnyObject, AnyObject>()
+//Vertical stack View
+class VerticalStackView: UIStackView {
+    
+    init(arrangedSubviews: [UIView], spacing: CGFloat = 0) {
+        super.init(frame: .zero)
+        
+        arrangedSubviews.forEach({addArrangedSubview($0)})
+        
+        self.spacing = spacing
+        self.axis = .vertical
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
 
-class CustomImageView: UIImageView {
+//Horizontal stack View
+class HorizontalStackView: UIStackView {
+    init(arrangedSubviews: [UIView], spacing: CGFloat = 0, alignment: UIStackView.Alignment) {
+        super.init(frame: .zero)
+        
+        arrangedSubviews.forEach({addArrangedSubview($0)})
+        
+        self.spacing = spacing
+        self.axis = .horizontal
+        
+        self.alignment = alignment
+    }
     
-    var imageUrlString: String?
-    
-    func loadImageUsingUrlString(_ urlSting: String) {
-        
-        imageUrlString = urlSting
-        
-        let url = NSURL(string: urlSting)
-        
-        image = nil
-        
-        if let imageFromCache = imageCache.object(forKey: urlSting as AnyObject) as? UIImage {
-            self.image = imageFromCache
-            return
-        }
-        
-        URLSession.shared.dataTask(with: url! as URL, completionHandler: { (data, respondes, error) in
-            
-            if error != nil {
-                print(error as Any)
-                return
-            }
-            
-            DispatchQueue.main.async(execute: {
-                
-                let imageToCache = UIImage(data: data!)
-                
-                if self.imageUrlString == urlSting {
-                    self.image = imageToCache
-                }
-                
-                imageCache.setObject(imageToCache!, forKey: urlSting as AnyObject)
-            })
-            
-        }).resume()
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

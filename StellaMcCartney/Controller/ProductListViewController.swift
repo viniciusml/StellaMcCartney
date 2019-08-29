@@ -82,10 +82,10 @@ extension ProductListViewController: UICollectionViewDelegateFlowLayout {
 
         guard let cell = collectionView.cellForItem(at: indexPath) as? ProductCell else { return }
         guard let productViewModel = cell.productViewModel else { return }
-        let detailController = DetailViewController(url: productViewModel.defaultCode10, productCode8: productViewModel.code8)
+        
+        let detailController = DetailViewController(productCode8: productViewModel.code8)
 
-        print(productViewModel.defaultCode10)
-        detailController.title = productViewModel.productTitle
+        detailController.title = productViewModel.microCategory.uppercased()
         navigationController?.pushViewController(detailController, animated: true)
     }
     

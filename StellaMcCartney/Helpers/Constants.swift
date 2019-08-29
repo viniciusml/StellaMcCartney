@@ -10,13 +10,13 @@ import Foundation
 
 struct ImageUrl {
     
-    static let readyToWear = "https://www.stellamccartney.com/41/41924061MK_11_c.jpg"
+    static let readyToWear = "https://www.stellamccartney.com/12/12353060PK_11_c.jpg"
     
-    static let accessories = "https://www.stellamccartney.com/46/46642086NU_11_c.jpg"
+    static let accessories = "https://www.stellamccartney.com/46/46642116IS_11_c.jpg"
     
     static let beauty = "https://www.stellamccartney.com/51/51125181GH_11_c.jpg"
     
-    static let lingerie = "https://www.stellamccartney.com/48/48218688SV_11_c.jpg"
+    static let lingerie = "https://www.stellamccartney.com/48/48218676JP_11_c.jpg"
 }
 
 struct Font {

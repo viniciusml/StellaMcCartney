@@ -83,6 +83,10 @@ struct ItemDetail: Codable {
     }
 }
 
+struct ProductDetailImage {
+    let imageUrl: String
+}
+
 // MARK: - Brand
 struct Brand: Codable {
     let id: Int
