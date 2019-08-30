@@ -10,6 +10,8 @@ import Foundation
 
 struct ProductViewModel {
     
+    // MARK: - Properties
+    
     let productTitle: String
     let fullPrice: String
     let discountPrice: String
@@ -19,6 +21,8 @@ struct ProductViewModel {
     var imageUrl: String {
         return prepareUrl(defaultCode10)
     }
+    
+    // MARK: - Initializer
     
     init(product: Item) {
         
@@ -31,6 +35,7 @@ struct ProductViewModel {
         self.defaultCode10 = product.defaultCode10
         self.code8 = product.code8
         
+        // Check if there is a product with a Discount Price.
         if product.fullPrice != product.discountedPrice {
             self.fullPrice = "€\(product.discountedPrice)"
             self.discountPrice = "Was €\(product.fullPrice)"
@@ -42,6 +47,12 @@ struct ProductViewModel {
         self.microCategory = product.microCategory
     }
     
+    /// Prepares url to load image.
+    ///
+    /// Use this method to assemble a url with a folderIdentifier and defaultCode10, to load Product Thumbnail.
+    ///
+    /// - Parameter defaultCode10: String containing code with reference to the product.
+    /// - Returns: String.
     func prepareUrl(_ defaultCode10: String) -> String {
         
         let folderIdentifier = defaultCode10.prefix(2)

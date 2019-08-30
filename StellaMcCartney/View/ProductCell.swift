@@ -11,42 +11,45 @@ import UIKit
 
 class ProductCell: BaseCell {
     
+    // MARK: - Properties
+    
     var productViewModel: ProductViewModel! {
         didSet {
-            productName.text = productViewModel.productTitle
-            fullPriceLabel.text = productViewModel.fullPrice
-            discountPriceLabel.text = productViewModel.discountPrice
-            productImageView.loadImage(urlString: productViewModel.imageUrl)
-
+            productTitle.text = productViewModel.productTitle
+            firstPrice.text = productViewModel.fullPrice
+            secondPrice.text = productViewModel.discountPrice
+            productThumbnail.loadImage(urlString: productViewModel.imageUrl)
         }
     }
     
-    let productImageView: CachedImageView = {
+    let productThumbnail: CachedImageView = {
         let imageView = CachedImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
+        imageView.backgroundColor = .gainsboroGray
         return imageView
     }()
     
-    let productName = UILabel(font: UIFont(name: Font.medium, size: 18)!, numberOfLines: 0)
+    let productTitle = UILabel(font: UIFont(name: Font.medium, size: 18)!, numberOfLines: 0)
     
-    let fullPriceLabel = UILabel(font: UIFont(name: Font.medium, size: 18)!)
+    let firstPrice = UILabel(font: UIFont(name: Font.medium, size: 18)!)
     
-    let discountPriceLabel = UILabel(font: UIFont(name: Font.light, size: 16)!)
+    let secondPrice = UILabel(font: UIFont(name: Font.light, size: 16)!)
+    
+    // MARK: - Helper functions
     
     override func setupViews() {
         
-        [productImageView ,productName, fullPriceLabel, discountPriceLabel].forEach({
+        [productThumbnail ,productTitle, firstPrice, secondPrice].forEach({
             $0.backgroundColor = .white
             addSubview($0)
         })
         
-        productImageView.anchor(top: self.topAnchor, leading: self.leadingAnchor, bottom: nil, trailing: self.trailingAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), size: CGSize(width: 0, height: 230))
+        productThumbnail.anchor(top: self.topAnchor, leading: self.leadingAnchor, bottom: nil, trailing: self.trailingAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), size: CGSize(width: 0, height: 230))
         
-        discountPriceLabel.anchor(top: nil, leading: self.leadingAnchor, bottom: self.bottomAnchor, trailing: self.trailingAnchor, size: CGSize(width: 0, height: 20))
+        secondPrice.anchor(top: nil, leading: self.leadingAnchor, bottom: self.bottomAnchor, trailing: self.trailingAnchor, size: CGSize(width: 0, height: 20))
         
-        fullPriceLabel.anchor(top: nil, leading: self.leadingAnchor, bottom: discountPriceLabel.topAnchor, trailing: self.trailingAnchor, size: CGSize(width: 0, height: 28))
+        firstPrice.anchor(top: nil, leading: self.leadingAnchor, bottom: secondPrice.topAnchor, trailing: self.trailingAnchor, size: CGSize(width: 0, height: 28))
         
-        productName.anchor(top: productImageView.bottomAnchor, leading: self.leadingAnchor, bottom: fullPriceLabel.topAnchor, trailing: self.trailingAnchor)
+        productTitle.anchor(top: productThumbnail.bottomAnchor, leading: self.leadingAnchor, bottom: firstPrice.topAnchor, trailing: self.trailingAnchor)
     }
+    
 }

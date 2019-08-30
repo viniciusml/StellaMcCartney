@@ -8,7 +8,12 @@
 
 import UIKit
 
-class PhotoCarousel: UIView, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
+/// A view that displays a horizontal series of cells, each of which presents to an image, creating a carousel effect.
+///
+/// Creates an effect very simmilar to UIPageViewController, but with no need of creating a controller.
+class PhotoCarousel: UIView {
+    
+    // MARK: - Properties
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -24,7 +29,24 @@ class PhotoCarousel: UIView, UICollectionViewDelegateFlowLayout, UICollectionVie
     
     var imagesAvailable = [String]()
     
-    fileprivate func setupCollectionView() {
+    // MARK: - Initializer
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupCollectionView()
+        
+        observeSelectedIndex()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Helper Functions
+    
+    func setupCollectionView() {
+        
         collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: photoCellId)
         
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -39,22 +61,20 @@ class PhotoCarousel: UIView, UICollectionViewDelegateFlowLayout, UICollectionVie
         collectionView.showsHorizontalScrollIndicator = false
     }
     
+    // Observe items in the imagesAvailable array, in order to set number of PhotoCells,
+    // and to load the images in cellForItemAt.
     func observeSelectedIndex() {
         NotificationCenter.default.addObserver(forName: .saveImagesUrlAvailable, object: nil, queue: OperationQueue.main) { (notification) in
             
             let detailController = notification.object as! DetailViewController
             self.imagesAvailable = detailController.imagesAvailable
             self.collectionView.reloadData()
+            
         }
     }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        setupCollectionView()
-        
-        observeSelectedIndex()
-    }
+}
+
+extension PhotoCarousel: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imagesAvailable.count
@@ -79,14 +99,14 @@ class PhotoCarousel: UIView, UICollectionViewDelegateFlowLayout, UICollectionVie
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
+        // Identify which index collection view ended the drag movement.
         let index = targetContentOffset.pointee.x / self.frame.width
         
         testIndex = Int(index)
         
+        // Post a notification to be received in PhotoIndicator,
+        //in order to select the cell for the same index.
         NotificationCenter.default.post(name: .saveIndex, object: self)
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }

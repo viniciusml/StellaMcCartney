@@ -44,9 +44,9 @@ open class DiscardableImageCacheItem: NSObject, NSDiscardableContent {
     
 }
 
-/**
- A convenient UIImageView to load and cache images.
- */
+
+/// UIImageView to load and cache images.
+
 open class CachedImageView: UIImageView {
     
     public static let imageCache = NSCache<NSString, DiscardableImageCacheItem>()
@@ -56,24 +56,14 @@ open class CachedImageView: UIImageView {
     private var urlStringForChecking: String?
     private var emptyImage: UIImage?
     
-    public convenience init(cornerRadius: CGFloat = 0, tapCallback: @escaping (() ->())) {
-        self.init(cornerRadius: cornerRadius, emptyImage: nil)
-        self.tapCallback = tapCallback
-        isUserInteractionEnabled = true
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+    public convenience init() {
+        self.init(emptyImage: nil)
     }
     
-    @objc func handleTap() {
-        tapCallback?()
-    }
-    
-    private var tapCallback: (() -> ())?
-    
-    public init(cornerRadius: CGFloat = 0, emptyImage: UIImage? = nil) {
+    public init(emptyImage: UIImage? = nil) {
         super.init(frame: .zero)
         contentMode = .scaleAspectFill
         clipsToBounds = true
-        layer.cornerRadius = cornerRadius
         self.emptyImage = emptyImage
     }
     
@@ -81,14 +71,11 @@ open class CachedImageView: UIImageView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    /**
-     Easily load an image from a URL string and cache it to reduce network overhead later.
-     
-     - parameter urlString: The url location of your image, usually on a remote server somewhere.
-     - parameter completion: Optionally execute some task after the image download completes
-     */
+     /// Load an image from a URL string and cache it to reduce network overhead.
+     ///
+     /// - parameter urlString: Image's url.
     
-    open func loadImage(urlString: String, completion: (() -> ())? = nil) {
+    open func loadImage(urlString: String) {
         image = nil
         
         self.urlStringForChecking = urlString
@@ -97,7 +84,6 @@ open class CachedImageView: UIImageView {
         
         if let cachedItem = CachedImageView.imageCache.object(forKey: urlKey) {
             image = cachedItem.image
-            completion?()
             return
         }
         
@@ -119,7 +105,6 @@ open class CachedImageView: UIImageView {
                     
                     if urlString == self?.urlStringForChecking {
                         self?.image = image
-                        completion?()
                     }
                 }
             }

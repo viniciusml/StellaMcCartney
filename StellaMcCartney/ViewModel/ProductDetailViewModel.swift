@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Keys for descriptions received in API call, for each product detail.
 enum DescriptionKey: String, CustomStringConvertible {
     case ModelNames = "ModelNames"
     case MicroCategory = "MicroCategory"
@@ -24,6 +25,8 @@ enum DescriptionKey: String, CustomStringConvertible {
 
 struct ProductDetailViewModel {
     
+    // MARK: - Properties
+    
     let descripriptions: [Description]
     let fullPrice: String
     let discountPrice: String
@@ -36,25 +39,27 @@ struct ProductDetailViewModel {
     
     var modelNames: String {
         get {
-            return fetchDescription(for: .ModelNames)
+            return prepareDescription(for: .ModelNames)
         }
     }
     
     var microCategory: String {
-        return fetchDescription(for: .MicroCategory)
+        return prepareDescription(for: .MicroCategory)
     }
     
     var macroCategory: String {
-        return fetchDescription(for: .MacroCategory)
+        return prepareDescription(for: .MacroCategory)
     }
     
     var productTitle: String {
-        return fetchDescription(for: .Title)
+        return prepareDescription(for: .Title)
     }
     
     var editorialDescription: String {
-        return fetchDescription(for: .EditorialDescription)
+        return prepareDescription(for: .EditorialDescription)
     }
+    
+    // MARK: - Initializer
     
     init(product: ProductDetail) {
 
@@ -62,6 +67,7 @@ struct ProductDetailViewModel {
         self.descripriptions = product.item.descriptions
         self.imageTypes = product.item.imageTypes
         
+        // Check if there is a product with a Discount Price.
         if product.item.price.fullPrice != product.item.price.discountedPrice {
             self.fullPrice = "Price: €\(product.item.price.discountedPrice)"
             self.discountPrice = "Was €\(product.item.price.fullPrice)"
@@ -71,6 +77,14 @@ struct ProductDetailViewModel {
         }
     }
     
+    /// Prepares urls to load images.
+    ///
+    /// Use this method to get folderIdentifier and characters representnig images available.
+    /// Characters - c, g, h, i, p, q, s - are obtained by the selecting the suffix present in each image type element, after filtered by image quality, represented by a number - 8, 11, 12, 13.
+    ///
+    /// - Parameter imageTypes: Array of strings with image types available for a specific product.
+    /// - Parameter defaultCode10: String containing code with reference to the product.
+    /// - Returns: [String].
     func prepareUrls(for imageTypes: [String], defaultCode10: String) -> [String] {
         
         let folderIdentifier = defaultCode10.prefix(2)
@@ -86,7 +100,11 @@ struct ProductDetailViewModel {
         return typesWithNoDuplicates
     }
     
-    func fetchDescription(for detail: DescriptionKey) -> String {
+    /// Prepares description for a specific product detail.
+    ///
+    /// - parameter detail: DescriptionKey
+    /// - returns: String
+    func prepareDescription(for detail: DescriptionKey) -> String {
         
         var descriptionFetched: String
         let description = self.descripriptions.filter { $0.key == detail.rawValue }.reduce("") { $0 + $1.value }

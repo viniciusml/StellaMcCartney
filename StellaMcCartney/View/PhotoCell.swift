@@ -8,13 +8,20 @@
 
 import UIKit
 
+/// Cell to be used as photo cell to be presented in PhotoCarousel.
+///
+/// Similar to UIPageViewController in appearence.
 class PhotoCell: BaseCell {
+    
+    // MARK: - Properties
     
     let photoImageView: CachedImageView = {
         let photo = CachedImageView()
         photo.backgroundColor = .gainsboroGray
         return photo
     }()
+    
+    // MARK: - Helper functions
     
     override func setupViews() {
         super.setupViews()

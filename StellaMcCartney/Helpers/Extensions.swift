@@ -14,27 +14,15 @@ extension UIColor {
 }
 
 extension Notification.Name {
+    
     static let saveIndex = Notification.Name("saveIndex")
+    
     static let saveImagesUrlAvailable = Notification.Name("imagesUrlAvailable")
 }
 
-extension UIImageView {
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-            }
-        }
-    }
-}
-
-//Programatic constraints
 extension UIView {
     
+    /// Anchors a view, with the possibility to add padding and specify a size.
     @discardableResult
     func anchor(top: NSLayoutYAxisAnchor?, leading: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, trailing: NSLayoutXAxisAnchor?, padding: UIEdgeInsets = .zero, size: CGSize = .zero) -> AnchoredConstraints {
         
@@ -174,7 +162,7 @@ extension UIButton {
     
 }
 
-//Vertical stack View
+/// Vertical stack View.
 class VerticalStackView: UIStackView {
     
     init(arrangedSubviews: [UIView], spacing: CGFloat = 0) {
@@ -192,7 +180,7 @@ class VerticalStackView: UIStackView {
     
 }
 
-//Horizontal stack View
+/// Horizontal stack View.
 class HorizontalStackView: UIStackView {
     init(arrangedSubviews: [UIView], spacing: CGFloat = 0, alignment: UIStackView.Alignment) {
         super.init(frame: .zero)
@@ -211,6 +199,8 @@ class HorizontalStackView: UIStackView {
 }
 
 extension Array where Element: Hashable {
+    
+    /// Removes duplicated elements in an Array.
     func removeDuplicates() -> [Element] {
         var addedDict = [Element: Bool]()
         

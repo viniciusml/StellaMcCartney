@@ -9,9 +9,14 @@
 import Foundation
 import UIKit
 
+/// Cell to be used as indicator for photo cell being presented in PhotoCarousel.
+///
+/// Similar to UIPageControl in appearence.
 class IndicatorCell: BaseCell {
     
-    let testView: UIView = {
+    // MARK: - Properties
+    
+    let indicatorView: UIView = {
         let iv = UIView()
         iv.backgroundColor = .gainsboroGray
         iv.layer.cornerRadius = 4
@@ -21,18 +26,20 @@ class IndicatorCell: BaseCell {
     
     override var isSelected: Bool {
         didSet {
-            testView.backgroundColor = isSelected ? .black : .gainsboroGray
+            indicatorView.backgroundColor = isSelected ? .black : .gainsboroGray
         }
     }
+    
+    // MARK: - Helper Functions
     
     override func setupViews() {
         super.setupViews()
         
         isUserInteractionEnabled = false
         
-        addSubview(testView)
-        testView.constrainHeight(constant: 8)
-        testView.constrainWidth(constant: 8)
-        testView.centerInSuperview()
+        addSubview(indicatorView)
+        indicatorView.constrainHeight(constant: 8)
+        indicatorView.constrainWidth(constant: 8)
+        indicatorView.centerInSuperview()
     }
 }

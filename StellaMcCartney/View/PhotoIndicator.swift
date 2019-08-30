@@ -9,7 +9,12 @@
 import Foundation
 import UIKit
 
-class PhotoIndicator: UIView, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
+/// A view that displays a horizontal series of dots, each of which corresponds to an image in PhotoCarousel.
+///
+/// Creates an effect very simmilar to UIPageControl, but with no need of creating a UIPageViewController.
+class PhotoIndicator: UIView {
+    
+    // MARK: - Properties
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -23,38 +28,9 @@ class PhotoIndicator: UIView, UICollectionViewDelegateFlowLayout, UICollectionVi
     
     let indicatorCellId = "cellId"
     
-    var index = Int()
+    var index = 0
     
-    fileprivate func setupCollectionView() {
-        collectionView.register(IndicatorCell.self, forCellWithReuseIdentifier: indicatorCellId)
-        
-        addSubview(collectionView)
-        collectionView.backgroundColor = .white
-        collectionView.fillSuperview()
-        collectionView.isScrollEnabled = false
-    }
-    
-    func observeSelectedIndex() {
-        NotificationCenter.default.addObserver(forName: .saveIndex, object: nil, queue: OperationQueue.main) { (notification) in
-            let pC = notification.object as! PhotoCarousel
-            self.index = pC.testIndex
-            let newSelectedIndexPath = NSIndexPath(item: self.index, section: 0)
-            self.collectionView.selectItem(at: newSelectedIndexPath as IndexPath, animated: false, scrollPosition: [])
-        }
-    }
-    
-    func observeNumberOfImages() {
-        NotificationCenter.default.addObserver(forName: .saveImagesUrlAvailable, object: nil, queue: OperationQueue.main) { (notification) in
-            
-            let detailController = notification.object as! DetailViewController
-            self.imagesAvailable = detailController.imagesAvailable
-            self.collectionView.reloadData()
-            
-            //Initialize CV with first cell selected.
-            let selectedIndexPath = NSIndexPath(item: 0, section: 0)
-            self.collectionView.selectItem(at: selectedIndexPath as IndexPath, animated: false, scrollPosition: [])
-        }
-    }
+    // MARK: - Initializer
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,6 +42,53 @@ class PhotoIndicator: UIView, UICollectionViewDelegateFlowLayout, UICollectionVi
         observeNumberOfImages()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Helper Functions
+    
+    func setupCollectionView() {
+        collectionView.register(IndicatorCell.self, forCellWithReuseIdentifier: indicatorCellId)
+        
+        addSubview(collectionView)
+        collectionView.backgroundColor = .white
+        collectionView.fillSuperview()
+        collectionView.isScrollEnabled = false
+    }
+    
+    // Observe changes in the index of PhotoCarousel Cell being displayed, in order to set IndicatorCell as selected.
+    func observeSelectedIndex() {
+        NotificationCenter.default.addObserver(forName: .saveIndex, object: nil, queue: OperationQueue.main) { (notification) in
+            
+            let photoCarousel = notification.object as! PhotoCarousel
+            self.index = photoCarousel.testIndex
+            
+            let newSelectedIndexPath = NSIndexPath(item: self.index, section: 0)
+            self.collectionView.selectItem(at: newSelectedIndexPath as IndexPath, animated: false, scrollPosition: [])
+        }
+    }
+    
+    // Observe items in the imagesAvailable array, in order to set number of IndicatorCells.
+    func observeNumberOfImages() {
+        NotificationCenter.default.addObserver(forName: .saveImagesUrlAvailable, object: nil, queue: OperationQueue.main) { (notification) in
+            
+            let detailController = notification.object as! DetailViewController
+            self.imagesAvailable = detailController.imagesAvailable
+            self.collectionView.reloadData()
+            
+            //Initialize with first IndicatorCell selected.
+            let selectedIndexPath = NSIndexPath(item: self.index, section: 0)
+            self.collectionView.selectItem(at: selectedIndexPath as IndexPath, animated: false, scrollPosition: [])
+        }
+    }
+    
+}
+
+// MARK: - Collection View Delegate
+
+extension PhotoIndicator: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imagesAvailable.count
     }
@@ -85,7 +108,4 @@ class PhotoIndicator: UIView, UICollectionViewDelegateFlowLayout, UICollectionVi
         return 0
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }

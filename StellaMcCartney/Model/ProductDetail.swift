@@ -8,7 +8,8 @@
 
 import Foundation
 
-// MARK: - Welcome
+// MARK: - Product Detail
+
 struct ProductDetail: Codable {
     let header: HeaderDetail
     let item: ItemDetail
@@ -20,6 +21,7 @@ struct ProductDetail: Codable {
 }
 
 // MARK: - Header
+
 struct HeaderDetail: Codable {
     let statusCode: Int
     let headerDescription: String
@@ -30,7 +32,8 @@ struct HeaderDetail: Codable {
     }
 }
 
-// MARK: - Item
+// MARK: - Item Detail
+
 struct ItemDetail: Codable {
     let customDescription: Bool
     let authorID, sizeTypeID: Int
@@ -83,11 +86,8 @@ struct ItemDetail: Codable {
     }
 }
 
-struct ProductDetailImage {
-    let imageUrl: String
-}
-
 // MARK: - Brand
+
 struct Brand: Codable {
     let id: Int
     let name, katakanaName: String
@@ -100,6 +100,7 @@ struct Brand: Codable {
 }
 
 // MARK: - Description
+
 struct Description: Codable {
     let key, value: String
     let c10: String?
@@ -112,6 +113,7 @@ struct Description: Codable {
 }
 
 // MARK: - CroCategory
+
 struct CroCategory: Codable {
     let id: Int
     let name: String
@@ -123,6 +125,7 @@ struct CroCategory: Codable {
 }
 
 // MARK: - ModelColorSize
+
 struct ModelColorSize: Codable {
     let idColor, idSize, quantity: Int
     let isFastDelivery: Bool
@@ -136,6 +139,7 @@ struct ModelColorSize: Codable {
 }
 
 // MARK: - ModelColor
+
 struct ModelColor: Codable {
     let code10: String
     let colorID, macroColorID: Int
@@ -151,6 +155,7 @@ struct ModelColor: Codable {
 }
 
 // MARK: - ModelSize
+
 struct ModelSize: Codable {
     let sizeID, sortOrder: Int
     let modelSizeDefault: Default
@@ -163,6 +168,7 @@ struct ModelSize: Codable {
 }
 
 // MARK: - Default
+
 struct Default: Codable {
     let labeled: Bool
     let size: Int
@@ -177,6 +183,7 @@ struct Default: Codable {
 }
 
 // MARK: - Price
+
 struct Price: Codable {
     let discountedPrice, fullPrice: Int
     

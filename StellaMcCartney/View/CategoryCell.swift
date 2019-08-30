@@ -10,6 +10,8 @@ import UIKit
 
 class CategoryCell: BaseCell {
     
+    // MARK: - Properties
+    
     var category: Category? {
         didSet {
             categoryNameLabel.text = category?.name.uppercased()
@@ -20,8 +22,7 @@ class CategoryCell: BaseCell {
     
     let categoryImageView: CachedImageView = {
         let imageView = CachedImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
+        imageView.backgroundColor = .gainsboroGray
         return imageView
     }()
     
@@ -30,6 +31,8 @@ class CategoryCell: BaseCell {
     let categoryNameLabel = UILabel(font: UIFont(name: Font.semibold, size: 18)!)
     
     let shopNowLabel = UILabel(font: UIFont(name: Font.regular, size: 16)!)
+    
+    // MARK: - Helper functions
     
     override func setupViews() {
         
@@ -50,7 +53,9 @@ class CategoryCell: BaseCell {
         labelVerticalStack.fillSuperview()
     }
     
+    // Loads image based on category's selected image Urls.
     func setCategoryImage() {
+        
         if let categoryImageUrl = category?.imageUrl {
             
             categoryImageView.loadImage(urlString: categoryImageUrl)

@@ -8,6 +8,8 @@
 
 import Foundation
 
+// MARK: - Product
+
 struct Product: Codable {
     let header: Header
     let resultsLite: ProductResults
@@ -17,6 +19,8 @@ struct Product: Codable {
         case resultsLite = "ResultsLite"
     }
 }
+
+// MARK: - Header
 
 struct Header: Codable {
     let statusCode: Int
@@ -28,6 +32,8 @@ struct Header: Codable {
     }
 }
 
+// MARK: - Product Results
+
 struct ProductResults: Codable {
     let totalResults: Int
     let items: [Item]
@@ -37,6 +43,8 @@ struct ProductResults: Codable {
         case items = "Items"
     }
 }
+
+// MARK: - Item Detail
 
 struct Item: Codable {
     
@@ -57,6 +65,8 @@ struct Item: Codable {
     let brandName: BrandName
     let code8: String
 }
+
+// MARK: - Brand Name
 
 enum BrandName: String, Codable {
     case stellaMcCARTNEY = "STELLA McCARTNEY"

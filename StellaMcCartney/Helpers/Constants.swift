@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// URLs of Images chosen to represent the categories.
 struct ImageUrl {
     
     static let readyToWear = "https://www.stellamccartney.com/12/12353060PK_11_c.jpg"
@@ -19,6 +20,8 @@ struct ImageUrl {
     static let lingerie = "https://www.stellamccartney.com/48/48218676JP_11_c.jpg"
 }
 
+
+/// Font styles utilized with the font Family PingFangHK.
 struct Font {
     
     static let light = "PingFangHK-Light"
