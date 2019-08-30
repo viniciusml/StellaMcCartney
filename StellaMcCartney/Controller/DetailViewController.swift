@@ -9,21 +9,11 @@
 import Foundation
 import UIKit
 
-enum Detail: String {
-    case ModelNames = "ModelNames"
-    case MicroCategory = "MicroCategory"
-    case MacroCategory = "MacroCategory"
-    case EditorialDescription = "EditorialDescription"
-    case title = "Title"
-}
-
 class DetailViewController: UIViewController, UIScrollViewDelegate {
     
-    lazy var scrollView: UIScrollView = {
+    let scrollView: UIScrollView = {
         let sView = UIScrollView()
         sView.backgroundColor = .white
-        sView.delegate = self
-        sView.contentSize.height = view.frame.height + 200
         return sView
     }()
     
@@ -31,7 +21,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     let productTitle = UILabel(font: UIFont(name: Font.medium, size: 18)!)
     
-    let microCategory = UILabel(font: UIFont(name: Font.medium, size: 18)!)
+    let microCategory = UILabel(font: UIFont(name: Font.regular, size: 16)!)
     
     let fullPrice = UILabel(font: UIFont(name: Font.medium, size: 18)!)
     
@@ -39,9 +29,9 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     let modelName = UILabel(font: UIFont(name: Font.semibold, size: 20)!, numberOfLines: 0)
     
-    let editorialDescription = UILabel(font: UIFont(name: Font.medium, size: 18)!)
+    let editorialDescription = UILabel(font: UIFont(name: Font.regular, size: 18)!, numberOfLines: 0)
     
-    let macroCategory = UILabel(font: UIFont(name: Font.medium, size: 18)!)
+    let macroCategory = UILabel(font: UIFont(name: Font.regular, size: 16)!)
     
     let photoCarousel = PhotoCarousel()
     
@@ -71,23 +61,18 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
                 self.fullPrice.text = String(describing: productDetailViewModel.fullPrice)
                 self.discountedPrice.text = String(describing: productDetailViewModel.discountPrice)
                 
-                self.modelName.text = self.populateLabel(for: .ModelNames)
-                self.productTitle.text = self.populateLabel(for: .title)
-                self.microCategory.text = self.populateLabel(for: .MicroCategory)
-                self.editorialDescription.text = self.populateLabel(for: .EditorialDescription)
-                self.macroCategory.text = self.populateLabel(for: .MacroCategory)
+                self.modelName.text = productDetailViewModel.modelNames
+                self.productTitle.text = productDetailViewModel.productTitle
+                self.microCategory.text = productDetailViewModel.microCategory
+                self.editorialDescription.text = productDetailViewModel.editorialDescription
+                
+                self.macroCategory.text = productDetailViewModel.macroCategory
                 
                 self.imagesAvailable = productDetailViewModel.imagesUrl
                 NotificationCenter.default.post(name: .saveImagesUrlAvailable, object: self)
+                
             }
         }
-    }
-    
-    func populateLabel(for detail: Detail) -> String {
-        
-        let labelInformation = productDetailViewModel?.descripriptions.filter { $0.key == detail.rawValue }.reduce("") { $0 + $1.value } ?? ""
-        
-        return labelInformation
     }
     
     private func setupPhotoCarousel() {
@@ -97,12 +82,16 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         
         scrollView.addSubview(photoIndicator)
         photoIndicator.anchor(top: photoCarousel.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: UIEdgeInsets(top: 10, left: 131, bottom: 0, right: 131), size: CGSize(width: 0, height: 28))
+        
     }
+    
+    var contentRect = CGRect.zero
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.addSubview(scrollView)
+        scrollView.delegate = self
         scrollView.fillSuperview()
         
         setupPhotoCarousel()
@@ -111,24 +100,35 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        self.scrollView.contentSize = self.scrollView.subviews.reduce(CGRect.zero, {
+            return $0.union($1.frame)
+        }).size
+        
+    }
+    
     func setupSubViews() {
         
-        fullPrice.constrainWidth(constant: 90)
+        fullPrice.constrainWidth(constant: 140)
         let horizontalStack = HorizontalStackView(arrangedSubviews: [fullPrice, discountedPrice], alignment: .fill)
         
-        let verticalStack = VerticalStackView(arrangedSubviews: [modelName, horizontalStack, productTitle, microCategory], spacing: 20)
+        let verticalStack = VerticalStackView(arrangedSubviews: [modelName, horizontalStack, productTitle, microCategory, macroCategory, editorialDescription], spacing: 20)
         scrollView.addSubview(verticalStack)
         
         verticalStack.anchor(top: photoIndicator.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: UIEdgeInsets(top: 20, left: 20, bottom: 0, right: 20))
         
-        let labels = [fullPrice, discountedPrice, modelName, productTitle, microCategory]
+        let labels = [fullPrice, discountedPrice, modelName, productTitle, microCategory, macroCategory, editorialDescription]
         labels.forEach ({
             $0.textAlignment = .left
+            $0.lineBreakMode = .byWordWrapping
         })
+        
     }
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
 }
+

@@ -31,6 +31,7 @@ class PhotoIndicator: UIView, UICollectionViewDelegateFlowLayout, UICollectionVi
         addSubview(collectionView)
         collectionView.backgroundColor = .white
         collectionView.fillSuperview()
+        collectionView.isScrollEnabled = false
     }
     
     func observeSelectedIndex() {
@@ -77,7 +78,7 @@ class PhotoIndicator: UIView, UICollectionViewDelegateFlowLayout, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = frame.width / CGFloat(imagesAvailable.count)
-        return CGSize(width: width, height: width)
+        return CGSize(width: width, height: 12)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

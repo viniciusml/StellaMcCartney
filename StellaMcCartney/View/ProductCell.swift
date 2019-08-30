@@ -16,7 +16,7 @@ class ProductCell: BaseCell {
             productName.text = productViewModel.productTitle
             fullPriceLabel.text = productViewModel.fullPrice
             discountPriceLabel.text = productViewModel.discountPrice
-            productImageView.loadImage(urlString: prepareUrl(productViewModel.defaultCode10))
+            productImageView.loadImage(urlString: productViewModel.imageUrl)
 
         }
     }
@@ -48,13 +48,5 @@ class ProductCell: BaseCell {
         fullPriceLabel.anchor(top: nil, leading: self.leadingAnchor, bottom: discountPriceLabel.topAnchor, trailing: self.trailingAnchor, size: CGSize(width: 0, height: 28))
         
         productName.anchor(top: productImageView.bottomAnchor, leading: self.leadingAnchor, bottom: fullPriceLabel.topAnchor, trailing: self.trailingAnchor)
-    }
-    
-    func prepareUrl(_ defaultCode10: String) -> String {
-        
-        let folderIdentifier = defaultCode10.prefix(2)
-        let url = "https://www.stellamccartney.com/\(folderIdentifier)/\(defaultCode10)_11_c.jpg"
-        
-        return url
     }
 }

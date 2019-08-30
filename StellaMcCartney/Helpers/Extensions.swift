@@ -209,3 +209,13 @@ class HorizontalStackView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+extension Array where Element: Hashable {
+    func removeDuplicates() -> [Element] {
+        var addedDict = [Element: Bool]()
+        
+        return filter {
+            addedDict.updateValue(true, forKey: $0) == nil
+        }
+    }
+}

@@ -16,6 +16,9 @@ struct ProductViewModel {
     let defaultCode10: String
     let code8: String
     let microCategory: String
+    var imageUrl: String {
+        return prepareUrl(defaultCode10)
+    }
     
     init(product: Item) {
         
@@ -37,5 +40,13 @@ struct ProductViewModel {
         }
         
         self.microCategory = product.microCategory
+    }
+    
+    func prepareUrl(_ defaultCode10: String) -> String {
+        
+        let folderIdentifier = defaultCode10.prefix(2)
+        let url = "https://www.stellamccartney.com/\(folderIdentifier)/\(defaultCode10)_11_c.jpg"
+        
+        return url
     }
 }
