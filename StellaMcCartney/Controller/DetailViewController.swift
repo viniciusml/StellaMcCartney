@@ -88,6 +88,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
                 self.productDetailViewModel = ProductDetailViewModel(product: productDetail)
             case .failure(let err):
                 print("Failure to fetch details:", err)
+                Alert().showBasicAlert(title: "Network Error", message: "Failed to load product details. Try again later.", vc: self)
             }
             
             DispatchQueue.main.async {

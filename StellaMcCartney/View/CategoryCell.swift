@@ -59,6 +59,7 @@ class CategoryCell: BaseCell {
         if let categoryImageUrl = category?.imageUrl {
             
             categoryImageView.loadImage(urlString: categoryImageUrl)
+            
         }
     }
     

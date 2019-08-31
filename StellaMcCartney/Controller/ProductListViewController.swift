@@ -51,6 +51,7 @@ class ProductListViewController: UICollectionViewController {
                 self.productViewModels = product.resultsLite.items.map({ return ProductViewModel(product: $0)})
             case .failure(let err):
                 print("Failure to fetch product:", err)
+                Alert().showBasicAlert(title: "Network Error", message: "Failed to load products. Try again later.", vc: self)
             }
             
             DispatchQueue.main.async {

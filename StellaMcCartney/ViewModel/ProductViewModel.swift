@@ -26,6 +26,7 @@ struct ProductViewModel {
     
     init(product: Item) {
         
+        // Deal with possible empty fields or HTML tags.
         if product.modelNames == nil {
             self.productTitle = product.microCategory
         } else {

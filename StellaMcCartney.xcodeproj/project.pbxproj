@@ -30,6 +30,8 @@
 		8F074AA023181E7100E977DF /* PhotoIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F074A9F23181E7100E977DF /* PhotoIndicator.swift */; };
 		8F074AA223181E8F00E977DF /* IndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F074AA123181E8F00E977DF /* IndicatorCell.swift */; };
 		8F074AA423181EAB00E977DF /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F074AA323181EAB00E977DF /* PhotoCell.swift */; };
+		8F074AA6231A937800E977DF /* ImageIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F074AA5231A937800E977DF /* ImageIdentifier.swift */; };
+		8F074AA8231AB55000E977DF /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F074AA7231AB55000E977DF /* Alert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		8F074A9F23181E7100E977DF /* PhotoIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoIndicator.swift; sourceTree = "<group>"; };
 		8F074AA123181E8F00E977DF /* IndicatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorCell.swift; sourceTree = "<group>"; };
 		8F074AA323181EAB00E977DF /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		8F074AA5231A937800E977DF /* ImageIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageIdentifier.swift; sourceTree = "<group>"; };
+		8F074AA7231AB55000E977DF /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +157,8 @@
 				8F074A7823150BDA00E977DF /* Extensions.swift */,
 				8F074A7A23151EDC00E977DF /* Constants.swift */,
 				8F074A9B2317AAEB00E977DF /* CachedImageView.swift */,
+				8F074AA5231A937800E977DF /* ImageIdentifier.swift */,
+				8F074AA7231AB55000E977DF /* Alert.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -245,9 +251,11 @@
 				8F074A8F2315843400E977DF /* DetailViewController.swift in Sources */,
 				8F074A7623150B6F00E977DF /* BaseCell.swift in Sources */,
 				8F074A9C2317AAEB00E977DF /* CachedImageView.swift in Sources */,
+				8F074AA8231AB55000E977DF /* Alert.swift in Sources */,
 				8F074A6C231431C400E977DF /* Service.swift in Sources */,
 				8F074A7923150BDA00E977DF /* Extensions.swift in Sources */,
 				8F074AA223181E8F00E977DF /* IndicatorCell.swift in Sources */,
+				8F074AA6231A937800E977DF /* ImageIdentifier.swift in Sources */,
 				8F074A9A231690A900E977DF /* ProductDetailViewModel.swift in Sources */,
 				8F074A912316598B00E977DF /* ProductDetail.swift in Sources */,
 				8F074AA023181E7100E977DF /* PhotoIndicator.swift in Sources */,
