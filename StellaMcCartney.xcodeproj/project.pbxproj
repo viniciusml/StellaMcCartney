@@ -31,7 +31,19 @@
 		8F074AA423181EAB00E977DF /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F074AA323181EAB00E977DF /* PhotoCell.swift */; };
 		8F074AA6231A937800E977DF /* ImageIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F074AA5231A937800E977DF /* ImageIdentifier.swift */; };
 		8F074AA8231AB55000E977DF /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F074AA7231AB55000E977DF /* Alert.swift */; };
+		8F074AE6231CFAF800E977DF /* StellaMcCartneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F074AE5231CFAF800E977DF /* StellaMcCartneyTests.swift */; };
+		8F074AEE231D064000E977DF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8F074AED231D064000E977DF /* README.md */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8F074AE8231CFAF800E977DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F074A4E231431B000E977DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F074A55231431B000E977DF;
+			remoteInfo = StellaMcCartney;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		8F074A56231431B000E977DF /* StellaMcCartney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StellaMcCartney.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,10 +72,21 @@
 		8F074AA323181EAB00E977DF /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		8F074AA5231A937800E977DF /* ImageIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageIdentifier.swift; sourceTree = "<group>"; };
 		8F074AA7231AB55000E977DF /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		8F074AE3231CFAF800E977DF /* StellaMcCartneyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StellaMcCartneyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F074AE5231CFAF800E977DF /* StellaMcCartneyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StellaMcCartneyTests.swift; sourceTree = "<group>"; };
+		8F074AE7231CFAF800E977DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F074AED231D064000E977DF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		8F074A53231431B000E977DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F074AE0231CFAF800E977DF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -76,7 +99,9 @@
 		8F074A4D231431B000E977DF = {
 			isa = PBXGroup;
 			children = (
+				8F074AED231D064000E977DF /* README.md */,
 				8F074A58231431B000E977DF /* StellaMcCartney */,
+				8F074AE4231CFAF800E977DF /* StellaMcCartneyTests */,
 				8F074A57231431B000E977DF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				8F074A56231431B000E977DF /* StellaMcCartney.app */,
+				8F074AE3231CFAF800E977DF /* StellaMcCartneyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,6 +195,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		8F074AE4231CFAF800E977DF /* StellaMcCartneyTests */ = {
+			isa = PBXGroup;
+			children = (
+				8F074AE5231CFAF800E977DF /* StellaMcCartneyTests.swift */,
+				8F074AE7231CFAF800E977DF /* Info.plist */,
+			);
+			path = StellaMcCartneyTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -189,6 +224,24 @@
 			productReference = 8F074A56231431B000E977DF /* StellaMcCartney.app */;
 			productType = "com.apple.product-type.application";
 		};
+		8F074AE2231CFAF800E977DF /* StellaMcCartneyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F074AEC231CFAF800E977DF /* Build configuration list for PBXNativeTarget "StellaMcCartneyTests" */;
+			buildPhases = (
+				8F074ADF231CFAF800E977DF /* Sources */,
+				8F074AE0231CFAF800E977DF /* Frameworks */,
+				8F074AE1231CFAF800E977DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8F074AE9231CFAF800E977DF /* PBXTargetDependency */,
+			);
+			name = StellaMcCartneyTests;
+			productName = StellaMcCartneyTests;
+			productReference = 8F074AE3231CFAF800E977DF /* StellaMcCartneyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -201,6 +254,10 @@
 				TargetAttributes = {
 					8F074A55231431B000E977DF = {
 						CreatedOnToolsVersion = 10.2.1;
+					};
+					8F074AE2231CFAF800E977DF = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 8F074A55231431B000E977DF;
 					};
 				};
 			};
@@ -218,6 +275,7 @@
 			projectRoot = "";
 			targets = (
 				8F074A55231431B000E977DF /* StellaMcCartney */,
+				8F074AE2231CFAF800E977DF /* StellaMcCartneyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -227,8 +285,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F074AEE231D064000E977DF /* README.md in Resources */,
 				8F074A64231431B300E977DF /* LaunchScreen.storyboard in Resources */,
 				8F074A61231431B300E977DF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F074AE1231CFAF800E977DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +330,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8F074ADF231CFAF800E977DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F074AE6231CFAF800E977DF /* StellaMcCartneyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8F074AE9231CFAF800E977DF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8F074A55231431B000E977DF /* StellaMcCartney */;
+			targetProxy = 8F074AE8231CFAF800E977DF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8F074A62231431B300E977DF /* LaunchScreen.storyboard */ = {
@@ -430,6 +512,46 @@
 			};
 			name = Release;
 		};
+		8F074AEA231CFAF800E977DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3SNY4A7B39;
+				INFOPLIST_FILE = StellaMcCartneyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = example.StellaMcCartneyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StellaMcCartney.app/StellaMcCartney";
+			};
+			name = Debug;
+		};
+		8F074AEB231CFAF800E977DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3SNY4A7B39;
+				INFOPLIST_FILE = StellaMcCartneyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = example.StellaMcCartneyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StellaMcCartney.app/StellaMcCartney";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -447,6 +569,15 @@
 			buildConfigurations = (
 				8F074A69231431B300E977DF /* Debug */,
 				8F074A6A231431B300E977DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F074AEC231CFAF800E977DF /* Build configuration list for PBXNativeTarget "StellaMcCartneyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F074AEA231CFAF800E977DF /* Debug */,
+				8F074AEB231CFAF800E977DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
